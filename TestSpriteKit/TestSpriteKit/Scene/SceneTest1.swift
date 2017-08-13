@@ -33,7 +33,7 @@ class SceneTest1: SKScene {
     private var movingNode : MovingNode?
     private var movingNodes : [MovingNode] = []
     
-    private let MaxNodes = 10
+    private let MaxNodes = 100
     private var testMode : TestMode = .Test1
     private var testNodes : [SKNode] = []
     
@@ -279,6 +279,7 @@ class SceneTest1: SKScene {
             if let n = self.shapeNode?.copy() as! SKShapeNode? {
                 n.position = randomPos()
                 n.fillColor = randomColor()
+                n.strokeColor = .clear
                 n.zPosition = 10.0
                 n.name = "test1_" + i.description
                 
@@ -342,12 +343,13 @@ class SceneTest1: SKScene {
                 n.movingSpeed.y = CGFloat( Int(arc4random() % 10) - 5)
                 
                 // 折り返しの座標
-                n.minPos.x = self.size.width / 2 * (-1)
-                n.minPos.y = self.size.height / 2 * (-1)
-                n.maxPos.x = self.size.width / 2
-                n.maxPos.y = self.size.height / 2
+                n.minPos.x = 0
+                n.minPos.y = 0
+                n.maxPos.x = self.size.width
+                n.maxPos.y = self.size.height
                 
                 n.fillColor = randomColor()
+                n.strokeColor = .clear
                 
                 movingNodes.append(n)
                 self.addTestNode(n)
